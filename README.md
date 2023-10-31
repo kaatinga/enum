@@ -74,13 +74,3 @@ This package is provided under the [MIT License](LICENSE.md). Feel free to use a
 
 Contributions to the package are welcome. If you encounter any issues or have ideas for improvements, please open an
 issue or a pull request on the [GitHub repository](https://github.com/your-repository/enum).
-
-## Author
-
-This package was developed by [Your Name](https://your-website.com). You can contact me at [your-email@example.com].
-
----
-
-Please replace the placeholders in square brackets with your specific details, such as the repository URL, your name,
-website, and email address. Additionally, make sure to include the actual license file (LICENSE.md) in your repository
-and link to it in the "License" section.
