@@ -116,7 +116,6 @@ const firstCharMask = 0b111111
 func (e Enum) String() string {
 	var result string
 	for e > 0 {
-		fmt.Println(e & firstCharMask)
 		result = string(chars[e&firstCharMask]) + result
 		e >>= 6
 	}
