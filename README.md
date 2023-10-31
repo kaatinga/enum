@@ -47,17 +47,6 @@ decoded := encoded.String()
 fmt.Println("Decoded:", decoded)
 ```
 
-## Constants
-
-The package provides some constants to help with encoding and decoding:
-
-- `digitShift`: Rune value used to shift digits during encoding.
-- `upperShift`: Rune value used to shift uppercase letters during encoding.
-- `lowerShift`: Rune value used to shift lowercase letters during encoding.
-- `errInvalidCharacter`: An error indicating that an invalid character was encountered during decoding.
-- `errEmptyString`: An error indicating that an empty string was provided for encoding.
-- `errInvalidLength`: An error indicating that the input string length exceeds the supported maximum length.
-
 ## Supported Characters
 
 The package supports encoding and decoding using the following characters:
