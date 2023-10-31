@@ -8,7 +8,7 @@ situations where you need to represent strings as unique integer values, often u
 To install the `enum` package, simply run:
 
 ```bash
-go get github.com/your-repository/enum
+go get github.com//enum
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ Here's a quick guide on how to use the package:
 ### Import the Package
 
 ```go
-import "github.com/your-repository/enum"
+import "github.com/kaatinga/enum"
 ```
 
 ### Encoding a String
@@ -41,7 +41,8 @@ fmt.Println("Encoded:", encoded)
 To decode an `Enum` back into its original string representation, you can use the `String` method of the `Enum` type:
 
 ```go
-encoded := enum.Enum(12345) // Replace with your actual encoded value
+s := "Hello" // Replace with your actual encoded value
+encoded, err := enum.Encode(s)
 decoded := encoded.String()
 fmt.Println("Decoded:", decoded)
 ```
