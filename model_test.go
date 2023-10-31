@@ -11,12 +11,12 @@ func TestEncode(t *testing.T) {
 		input string
 		err   assert.ErrorAssertionFunc
 	}{
-		// {"_", assert.NoError},
-		// {"a", assert.NoError},
-		// {"bbb", assert.NoError},
-		// {"1", assert.NoError},
-		// {"-", assert.Error},
-		// {"aaaaaaaaaaaa", assert.Error},
+		{"_", assert.NoError},
+		{"a", assert.NoError},
+		{"bbb", assert.NoError},
+		{"1", assert.NoError},
+		{"-", assert.Error},
+		{"aaaaaaaaaaaa", assert.Error},
 		{"aaaaaaaaaa", assert.NoError},
 	}
 	for _, tt := range tests {

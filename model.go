@@ -2,7 +2,7 @@ package enum
 
 import "fmt"
 
-var chars = []int32{
+var chars = [64]int32{
 	'0',
 	'1',
 	'2',
@@ -93,7 +93,6 @@ func Encode(s string) (Enum, error) {
 
 	var result Enum
 	for _, char := range s {
-		fmt.Println(char)
 		result <<= 6
 		switch {
 		case char >= 0x30 && char <= 0x39:
