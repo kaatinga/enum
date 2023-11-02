@@ -64,6 +64,7 @@ The package supports encoding and decoding using the following characters:
 - Uppercase Letters: A-Z
 - Lowercase Letters: a-z
 - Underscore: _
+- Space: (whitespace)
 
 ## String Length Limitation
 
