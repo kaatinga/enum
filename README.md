@@ -1,3 +1,9 @@
+[![GitHub release](https://img.shields.io/github/release/kaatinga/enum.svg)](https://github.com/kaatinga/enum/releases)
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/kaatinga/enum/blob/main/LICENSE)
+[![codecov](https://codecov.io/gh/kaatinga/enum/branch/main/graph/badge.svg)](https://codecov.io/gh/kaatinga/enum)
+[![lint workflow](https://github.com/kaatinga/enum/actions/workflows/golangci-lint.yml/badge.svg)](https://github.com/kaatinga/enum/actions?query=workflow%3Alinter)
+[![help wanted](https://img.shields.io/badge/Help%20wanted-True-yellow.svg)](https://github.com/kaatinga/enum/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22)
+
 # Enum Package
 
 The `enum` package provides functionality to encode and decode strings into `Enum` values. This package is designed for
