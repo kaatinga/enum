@@ -18,6 +18,9 @@ func TestEncode(t *testing.T) {
 		{"-", assert.Error},
 		{"aaaaaaaaaaaa", assert.Error},
 		{"aaaaaaaaaa", assert.NoError},
+		{"aaaaaaaaa_", assert.NoError},
+		{"aaaaa aaaa", assert.NoError},
+		{"AAAA aaa_", assert.NoError},
 	}
 	for _, tt := range tests {
 		t.Run(tt.input, func(t *testing.T) {
