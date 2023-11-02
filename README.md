@@ -10,6 +10,8 @@ Some databases do not have enums and we ofter just store strings. This package p
 decode strings into Enum values. This package is designed for situations where you need to represent strings as unique
 integer values, often used for enumeration-like functionality. It goes with improved performance and memory usage.
 
+This package has zero dependencies.
+
 ## Installation
 
 To install the `enum` package, simply run:
