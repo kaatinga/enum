@@ -76,11 +76,10 @@ const (
 type Enum int64
 
 func Encode(s string) (Enum, error) {
-	switch len(s) {
-	case 0:
+	if len(s) == 0 {
 		return 0, ErrEmptyString
-	case 1, 2, 3, 4, 5, 6, 7, 8, 9, 10:
-	default:
+	}
+	if len(s) > 10 {
 		return 0, ErrInvalidLength
 	}
 
