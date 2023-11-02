@@ -80,4 +80,4 @@ This package is provided under the [MIT License](LICENSE.md). Feel free to use a
 ## Contribution
 
 Contributions to the package are welcome. If you encounter any issues or have ideas for improvements, please open an
-issue or a pull request on the [GitHub repository](https://github.com/your-repository/enum).
+issue or a pull request on the [GitHub repository](https://github.com/kaatinga/enum).
