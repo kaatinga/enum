@@ -37,9 +37,9 @@ integer value:
 s := "Hello"
 encoded, err := enum.Encode(s)
 if err != nil {
-fmt.Println("Error:", err)
+    fmt.Println("Error:", err)
 } else {
-fmt.Println("Encoded:", encoded)
+    fmt.Println("Encoded:", encoded)
 }
 ```
 
