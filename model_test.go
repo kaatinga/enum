@@ -1,32 +1,33 @@
 package enum
 
 import (
+	"errors"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestEncode(t *testing.T) {
 	tests := []struct {
 		input string
-		err   assert.ErrorAssertionFunc
+		err   error
 	}{
-		{"_", assert.NoError},
-		{"a", assert.NoError},
-		{"bbb", assert.NoError},
-		{"1", assert.NoError},
-		{"-", assert.Error},
-		{"aaaaaaaaaaaa", assert.Error},
-		{"aaaaaaaaaa", assert.NoError},
-		{"aaaaaaaaa_", assert.NoError},
-		{"aaaaa aaaa", assert.NoError},
-		{"AAAA aaa_", assert.NoError},
-		{"", assert.Error},
+		{"_", nil},
+		{"a", nil},
+		{"bbb", nil},
+		{"1", nil},
+		{"-", invalidCharacter('-')},
+		{"aaaaaaaaaaaa", ErrInvalidLength},
+		{"aaaaaaaaaa", nil},
+		{"aaaaaaaaa_", nil},
+		{"aaaaa aaaa", nil},
+		{"AAAA aaa_", nil},
+		{"", ErrEmptyString},
 	}
 	for _, tt := range tests {
 		t.Run(tt.input, func(t *testing.T) {
 			got, err := Encode(tt.input)
-			tt.err(t, err)
+			if !errors.Is(err, tt.err) {
+				t.Errorf("Encode() error = %v, wantErr %v", err, tt.err)
+			}
 
 			if err == nil && got.String() != tt.input {
 				t.Errorf("Encode() got = %v, want %v", got, tt.input)

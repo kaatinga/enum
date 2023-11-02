@@ -1,7 +1,6 @@
 package enum
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
@@ -35,7 +34,9 @@ func Test_Is(t *testing.T) {
 			target = "/" + tt.target.Error()
 		}
 		t.Run(tt.err.Error()+target, func(t *testing.T) {
-			assert.Equalf(t, tt.want, tt.err.Is(tt.target), "Is(%v)", tt.target)
+			if tt.want != tt.err.Is(tt.target) {
+				t.Errorf("Is() = %v, want %v", tt.err.Is(tt.target), tt.want)
+			}
 		})
 	}
 
@@ -45,7 +46,9 @@ func Test_Is(t *testing.T) {
 			target = "/" + tt.target.Error()
 		}
 		t.Run(tt.err.Error()+"/"+target, func(t *testing.T) {
-			assert.Equalf(t, tt.want, tt.err.Is(tt.target), "Is(%v)", tt.target)
+			if tt.want != tt.err.Is(tt.target) {
+				t.Errorf("Is() = %v, want %v", tt.err.Is(tt.target), tt.want)
+			}
 		})
 	}
 }
@@ -61,7 +64,9 @@ func Test_invalidCharacter_Error(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.err.Error(), func(t *testing.T) {
-			assert.Equalf(t, tt.want, tt.err.Error(), "Error()")
+			if tt.want != tt.err.Error() {
+				t.Errorf("Error() = %v, want %v", tt.err.Error(), tt.want)
+			}
 		})
 	}
 }
