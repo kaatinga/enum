@@ -75,6 +75,7 @@ const (
 
 type Enum int64
 
+// Encode encodes a string into an Enum.
 func Encode(s string) (Enum, error) {
 	if len(s) == 0 {
 		return 0, ErrEmptyString
@@ -105,8 +106,18 @@ func Encode(s string) (Enum, error) {
 	return result, nil
 }
 
+// MustEncode is like Encode but panics if Encode returns an error.
+func MustEncode(s string) Enum {
+	result, err := Encode(s)
+	if err != nil {
+		panic(err)
+	}
+	return result
+}
+
 const firstCharMask = 0b111111
 
+// String returns the string representation of the Enum.
 func (e Enum) String() string {
 	var result string
 	for e > 0 {
