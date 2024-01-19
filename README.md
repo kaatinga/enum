@@ -17,7 +17,7 @@ This package has zero dependencies.
 To install the `enum` package, simply run:
 
 ```bash
-go get github.com//enum
+go get github.com/kaatinga/enum
 ```
 
 ## Usage

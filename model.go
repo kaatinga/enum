@@ -1,6 +1,6 @@
 package enum
 
-var chars = [64]int32{
+var chars = [64]rune{
 	0:  '0',
 	1:  '1',
 	2:  '2',
