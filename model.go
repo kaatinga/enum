@@ -75,6 +75,16 @@ const (
 
 type Enum int64
 
+func (e Enum) MarshalText() ([]byte, error) {
+	return []byte(e.String()), nil
+}
+
+func (e *Enum) UnmarshalText(text []byte) (err error) {
+	name := string(text)
+	*e, err = Encode(name)
+	return
+}
+
 // Encode encodes a string into an Enum.
 func Encode(s string) (Enum, error) {
 	if len(s) == 0 {
