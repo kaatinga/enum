@@ -1,3 +1,4 @@
+[![Tests](https://github.com/kaatinga/luna/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/kaatinga/luna/actions/workflows/test.yml)
 [![GitHub release](https://img.shields.io/github/release/kaatinga/enum.svg)](https://github.com/kaatinga/enum/releases)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/kaatinga/enum/blob/main/LICENSE)
 [![codecov](https://codecov.io/gh/kaatinga/enum/branch/main/graph/badge.svg)](https://codecov.io/gh/kaatinga/enum)
@@ -84,4 +85,3 @@ This package is provided under the [MIT License](LICENSE.md). Feel free to use a
 
 Contributions to the package are welcome. If you encounter any issues or have ideas for improvements, please open an
 issue or a pull request on the [GitHub repository](https://github.com/kaatinga/enum).
-[![Tests](https://github.com/kaatinga/luna/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/kaatinga/luna/actions/workflows/test.yml)
