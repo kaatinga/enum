@@ -13,18 +13,12 @@ type testCase[E invalidInput | invalidCharacter] struct {
 func Test_Is(t *testing.T) {
 	tests := []testCase[invalidInput]{
 		{ErrInvalidLength, ErrInvalidLength, true},
-		{ErrInvalidLength, ErrEmptyString, false},
 		{ErrInvalidLength, ErrInvalidCharacter, false},
 		{ErrInvalidLength, nil, false},
-		{ErrEmptyString, ErrInvalidLength, false},
-		{ErrEmptyString, ErrEmptyString, true},
-		{ErrEmptyString, ErrInvalidCharacter, false},
-		{ErrEmptyString, nil, false},
 	}
 
 	tests2 := []testCase[invalidCharacter]{
 		{invalidCharacter(33), ErrInvalidCharacter, true},
-		{invalidCharacter(33), ErrEmptyString, false},
 		{invalidCharacter(33), nil, false},
 	}
 

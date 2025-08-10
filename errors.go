@@ -4,15 +4,10 @@ import "errors"
 
 type invalidInput byte
 
-const (
-	ErrEmptyString invalidInput = iota
-	ErrInvalidLength
-)
+const ErrInvalidLength invalidInput = iota
 
-func (err invalidInput) Error() string {
-	switch err {
-	case ErrEmptyString:
-		return "input string is empty"
+func (i invalidInput) Error() string {
+	switch i {
 	case ErrInvalidLength:
 		return "input string is too long, the maximum is 10 characters"
 	default:
@@ -20,14 +15,14 @@ func (err invalidInput) Error() string {
 	}
 }
 
-func (err invalidInput) Is(target error) bool {
+func (i invalidInput) Is(target error) bool {
 	var ii invalidInput
 	ok := errors.As(target, &ii)
 	if !ok {
 		return false
 	}
 
-	return err == ii
+	return i == ii
 }
 
 type invalidCharacter rune
