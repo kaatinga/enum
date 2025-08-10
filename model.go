@@ -1,5 +1,10 @@
 package enum
 
+import (
+	"bytes"
+	"strings"
+)
+
 var chars = [64]rune{
 	0:  '0',
 	1:  '1',
@@ -76,7 +81,13 @@ const (
 type Enum int64
 
 func (e Enum) MarshalText() ([]byte, error) {
-	return []byte(e.String()), nil
+	var builder bytes.Buffer
+	builder.Grow(10) // Maximum length is 10 characters
+	for e > 0 {
+		builder.WriteRune(chars[e&firstCharMask])
+		e >>= 6
+	}
+	return builder.Bytes(), nil
 }
 
 func (e *Enum) UnmarshalText(text []byte) (err error) {
@@ -129,10 +140,11 @@ const firstCharMask = 0b111111
 
 // String returns the string representation of the Enum.
 func (e Enum) String() string {
-	var result string
+	var builder strings.Builder
+	builder.Grow(10) // Maximum length is 10 characters
 	for e > 0 {
-		result = string(chars[e&firstCharMask]) + result
+		builder.WriteRune(chars[e&firstCharMask])
 		e >>= 6
 	}
-	return result
+	return builder.String()
 }
