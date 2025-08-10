@@ -81,13 +81,7 @@ const (
 type Enum int64
 
 func (e Enum) MarshalText() ([]byte, error) {
-	var builder bytes.Buffer
-	builder.Grow(10) // Maximum length is 10 characters
-	for e > 0 {
-		builder.WriteRune(chars[e&firstCharMask])
-		e >>= 6
-	}
-	return builder.Bytes(), nil
+	return e.Bytes(), nil
 }
 
 func (e *Enum) UnmarshalText(text []byte) (err error) {
@@ -98,33 +92,32 @@ func (e *Enum) UnmarshalText(text []byte) (err error) {
 
 // Encode encodes a string into an Enum.
 func Encode(s string) (Enum, error) {
-	if len(s) == 0 {
-		return 0, ErrEmptyString
-	}
 	if len(s) > 10 {
 		return 0, ErrInvalidLength
 	}
 
-	var result Enum
+	var result uint64
 	for _, char := range s {
 		result <<= 6
 		switch {
 		case char >= 0x61 && char <= 0x7A:
-			result += Enum(char - lowerShift)
+			result += uint64(char - lowerShift)
 		case char >= 0x30 && char <= 0x39:
-			result += Enum(char - digitShift)
+			result += uint64(char - digitShift)
 		case char >= 0x41 && char <= 0x5A:
-			result += Enum(char - upperShift)
+			result += uint64(char - upperShift)
 		case char == 95: // underscore
-			result += Enum(36)
+			result += 36
 		case char == 32: // space
-			result += Enum(63)
+			result += 63
 		default:
 			return 0, invalidCharacter(char)
 		}
 	}
 
-	return result, nil
+	result |= uint64(len(s)) << 60 // Store the length of the string in the top 4 bits
+
+	return Enum(result), nil
 }
 
 // MustEncode is like Encode but panics if Encode returns an error.
@@ -142,9 +135,18 @@ const firstCharMask = 0b111111
 func (e Enum) String() string {
 	var builder strings.Builder
 	builder.Grow(10) // Maximum length is 10 characters
-	for e > 0 {
-		builder.WriteRune(chars[e&firstCharMask])
-		e >>= 6
+	for topBit := int64(((uint64(e) >> 60) - 1) * 6); topBit >= 0; topBit -= 6 {
+		builder.WriteRune(chars[(uint64(e)>>topBit)&firstCharMask])
 	}
 	return builder.String()
+}
+
+// Bytes returns the []byte representation of the Enum.
+func (e Enum) Bytes() []byte {
+	var builder bytes.Buffer
+	builder.Grow(10) // Maximum length is 10 characters
+	for topBit := int64(((uint64(e) >> 60) - 1) * 6); topBit >= 0; topBit -= 6 {
+		builder.WriteRune(chars[(uint64(e)>>topBit)&firstCharMask])
+	}
+	return builder.Bytes()
 }
