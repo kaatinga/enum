@@ -69,7 +69,7 @@ The package supports encoding and decoding using the following characters:
 
 ## String Length Limitation
 
-The package enforces a maximum string length for encoding, supporting strings with lengths between 1 and 10 characters.
+The package enforces a maximum string length for encoding, supporting strings with lengths between 0 and 10 characters.
 If the input string length does not meet this criterion, the `errInvalidLength` error is returned.
 
 ## Error Handling
