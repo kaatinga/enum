@@ -80,6 +80,8 @@ const (
 
 type Enum int64
 
+// MarshalText and UnmarshalText are used by encoding/json for string encoding.
+// This causes Enum to be marshaled as its original string value in JSON, not as a number.
 func (e Enum) MarshalText() ([]byte, error) {
 	return e.Bytes(), nil
 }
