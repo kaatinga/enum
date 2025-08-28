@@ -2,7 +2,6 @@ package enum
 
 import (
 	"bytes"
-	"strings"
 )
 
 var chars = [64]rune{
@@ -135,9 +134,10 @@ const firstCharMask = 0b111111
 
 // String returns the string representation of the Enum.
 func (e Enum) String() string {
-	var builder strings.Builder
-	builder.Grow(10) // Maximum length is 10 characters
-	for topBit := int64(((uint64(e) >> 60) - 1) * 6); topBit >= 0; topBit -= 6 {
+	var builder bytes.Buffer
+	topBit := int64(((uint64(e) >> 60) - 1) * 6)
+	builder.Grow(int(topBit))
+	for ; topBit >= 0; topBit -= 6 {
 		builder.WriteRune(chars[(uint64(e)>>topBit)&firstCharMask])
 	}
 	return builder.String()
@@ -146,8 +146,9 @@ func (e Enum) String() string {
 // Bytes returns the []byte representation of the Enum.
 func (e Enum) Bytes() []byte {
 	var builder bytes.Buffer
-	builder.Grow(10) // Maximum length is 10 characters
-	for topBit := int64(((uint64(e) >> 60) - 1) * 6); topBit >= 0; topBit -= 6 {
+	topBit := int64(((uint64(e) >> 60) - 1) * 6)
+	builder.Grow(int(topBit))
+	for ; topBit >= 0; topBit -= 6 {
 		builder.WriteRune(chars[(uint64(e)>>topBit)&firstCharMask])
 	}
 	return builder.Bytes()
