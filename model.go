@@ -132,24 +132,32 @@ func MustEncode(s string) Enum {
 
 const firstCharMask = 0b111111
 
-// String returns the string representation of the Enum.
-func (e Enum) String() string {
+func (e Enum) decode() bytes.Buffer {
 	var builder bytes.Buffer
 	topBit := int64(((uint64(e) >> 60) - 1) * 6)
 	builder.Grow(int(topBit))
 	for ; topBit >= 0; topBit -= 6 {
 		builder.WriteRune(chars[(uint64(e)>>topBit)&firstCharMask])
 	}
+	return builder
+}
+
+// String returns the string representation of the Enum.
+func (e Enum) String() string {
+	if e == 0 {
+		return ""
+	}
+
+	var builder = e.decode()
 	return builder.String()
 }
 
 // Bytes returns the []byte representation of the Enum.
 func (e Enum) Bytes() []byte {
-	var builder bytes.Buffer
-	topBit := int64(((uint64(e) >> 60) - 1) * 6)
-	builder.Grow(int(topBit))
-	for ; topBit >= 0; topBit -= 6 {
-		builder.WriteRune(chars[(uint64(e)>>topBit)&firstCharMask])
+	if e == 0 {
+		return nil
 	}
+
+	var builder = e.decode()
 	return builder.Bytes()
 }
