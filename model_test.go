@@ -30,6 +30,10 @@ func TestEncode(t *testing.T) {
 				t.Errorf("Encode() error = %v, wantErr %v", err, tt.err)
 				return
 			}
+			if err != nil {
+				return
+			}
+
 			gotString := got.String()
 			if err == nil && gotString != tt.input {
 				t.Errorf("Encode() got = %s, want %v", gotString, tt.input)
