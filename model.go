@@ -161,3 +161,8 @@ func (e Enum) Bytes() []byte {
 	var builder = e.decode()
 	return builder.Bytes()
 }
+
+// Int64 returns the underlying int64 type
+func (e Enum) Int64() int64 {
+	return int64(e)
+}
